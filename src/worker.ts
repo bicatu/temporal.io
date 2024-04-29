@@ -14,7 +14,7 @@ async function run() {
   const worker = await Worker.create({
     connection,
     namespace: 'default',
-    taskQueue: 'hello-world',
+    taskQueue: 'customer-orders',
     // Workflows are registered using a path as they run in a separate JS context.
     workflowsPath: require.resolve('./workflows'),
     activities,
@@ -32,6 +32,7 @@ async function run() {
 }
 
 run().catch((err) => {
+  // good practice to log unexpected errors
   console.error(err);
   process.exit(1);
 });
