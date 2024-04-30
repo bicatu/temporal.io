@@ -1,5 +1,5 @@
 import { Connection, Client } from '@temporalio/client';
-import { addFunds, AddFundRequest } from './workflows';
+import { addFunds } from './workflows';
 import { nanoid } from 'nanoid';
 
 async function run() {
@@ -13,7 +13,7 @@ async function run() {
   const handle = await client.workflow.start(addFunds, {
     taskQueue: 'customer-orders',
     args: [{ customerId, amount: 100 }],
-    workflowId: 'add-funds-to-waller-' + customerId,
+    workflowId: 'add-funds-to-wallet-' + customerId,
   });
   console.log(`Started workflow ${handle.workflowId}`);
 
